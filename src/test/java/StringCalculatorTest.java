@@ -15,4 +15,15 @@ public class StringCalculatorTest {
     public void testEmptyStringReturnsZero() {
         Assertions.assertEquals(0, calculator.add(""));
     }
+
+
+    //Gjorda tester
+    @Test
+    public void testSingleNumber(){
+
+    }
+    @Test
+    public void testMultipleNumbers(){
+
+    }
 }
