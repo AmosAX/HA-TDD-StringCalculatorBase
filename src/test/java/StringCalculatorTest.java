@@ -42,4 +42,10 @@ public class StringCalculatorTest {
         Assertions.assertEquals(6, calculator.add("1\n2,3"));
         Assertions.assertEquals(14, calculator.add("5\n9"));
     }
+
+    @Test
+    public void testUserMadeDelimiter(){
+        Assertions.assertEquals(3, calculator.add("//;\\n1;2"));
+        Assertions.assertEquals(12, calculator.add("//€\\n6€6"));
+    }
 }
