@@ -45,7 +45,8 @@ public class StringCalculatorTest {
 
     @Test
     public void testUserMadeDelimiter(){
-        Assertions.assertEquals(3, calculator.add("//;\\n1;2"));
-        Assertions.assertEquals(12, calculator.add("//€\\n6€6"));
+        Assertions.assertEquals(3, calculator.add("//;\n1;2"));
+        Assertions.assertEquals(12, calculator.add("//€\n6€6"));
+        Assertions.assertEquals(24, calculator.add("//€\n6€6€6€6"));
     }
 }
