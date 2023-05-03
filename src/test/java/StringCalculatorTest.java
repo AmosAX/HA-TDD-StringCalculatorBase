@@ -59,6 +59,16 @@ public class StringCalculatorTest {
         } catch (RuntimeException ex){
             //good
         }
+    }
+    @Test
+    public void testRaiseExcepetionOnNegativeNumbersWithMessage(){
+
+        try{
+            calculator.add("-1,-2");
+            Assertions.fail("this should raise an exception");
+        } catch (RuntimeException ex){
+            Assertions.assertEquals("Can't use negative numbers[-1, -2]", ex.getMessage());
+        }
 
     }
 }
