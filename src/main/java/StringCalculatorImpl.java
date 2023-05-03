@@ -6,6 +6,7 @@ public class StringCalculatorImpl implements StringCalculator {
         if(input.isEmpty()){
             return 0;
         }
+        
         return -1;
     }
 }
