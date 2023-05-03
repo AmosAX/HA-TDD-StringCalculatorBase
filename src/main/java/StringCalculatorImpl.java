@@ -6,6 +6,10 @@ public class StringCalculatorImpl implements StringCalculator {
     public int add(String input) {
         //TODO implement
 
+        //Deal with the newlines by replacing them with commas
+        input = input.replace("\n", ",");
+
+
         if(input.isEmpty()){
             return 0;
         }
