@@ -14,7 +14,7 @@ public class StringCalculatorImpl implements StringCalculator {
             //now that we have used the delimiter we can start the string without it
             input = input.substring(input.indexOf('\n') + 1);
 
-            
+
             //System.out.println("The final input is" + input);
         }
 

@@ -49,4 +49,16 @@ public class StringCalculatorTest {
         Assertions.assertEquals(12, calculator.add("//€\n6€6"));
         Assertions.assertEquals(24, calculator.add("//€\n6€6€6€6"));
     }
+
+    @Test
+    public void testRaiseExcepetionOnNegativeNumbers(){
+
+        try{
+            calculator.add("-1,2");
+            Assertions.fail("this should raise an exception");
+        } catch (RuntimeException ex){
+            //good
+        }
+
+    }
 }
