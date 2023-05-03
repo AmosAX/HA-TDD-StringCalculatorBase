@@ -28,6 +28,8 @@ public class StringCalculatorTest {
     }
     @Test
     public void testMultipleNumbers(){
-
+        Assertions.assertEquals(3, calculator.add("1,2"));
+        Assertions.assertEquals(12, calculator.add("4,8"));
+        Assertions.assertEquals(14, calculator.add("11,3"));
     }
 }
