@@ -5,9 +5,15 @@ import java.util.stream.Stream;
 
 public class StringCalculatorImpl implements StringCalculator {
 
+    private final Logger logger;
+
+
+    public StringCalculatorImpl(final Logger logger) {
+        this.logger = logger;
+    }
+
     @Override
     public int add(String input) {
-        //TODO implement
 
         //if the strings starts with this we got a specific user delimiter
         if(input.startsWith("//")){
@@ -38,6 +44,13 @@ public class StringCalculatorImpl implements StringCalculator {
                 throw new RuntimeException("Can't use negative numbers" + negatives.toString());
             }
 
+            //the logging check
+            for (int number : numbersFromString) {
+                if (number > 1000) {
+                    logger.log(number);
+                }
+            }
+
             int total;
             return total = Stream.of (input.split(",")).mapToInt(Integer::parseInt).sum();
         }
@@ -64,6 +77,7 @@ public class StringCalculatorImpl implements StringCalculator {
         return false;
     }
 
+
     public static List<Integer> getNegativeNumbers(int[] numbers) {
 
         // variables
@@ -71,7 +85,6 @@ public class StringCalculatorImpl implements StringCalculator {
         int i = 0;
 
         List<Integer> NegativeNumberlist = new ArrayList <Integer>();
-
 
         // check is there any negative numbers?
         for (i = 0; i < numbers.length; i++) {
