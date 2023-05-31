@@ -15,6 +15,11 @@ public class StringCalculatorImpl implements StringCalculator {
     @Override
     public int add(String input) {
 
+
+        if(input.startsWith("scalc")){
+
+        }
+
         //if the strings starts with this we got a specific user delimiter
         if(input.startsWith("//")){
             char userDelimiter = input.charAt(2);

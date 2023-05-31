@@ -14,4 +14,10 @@ public class LoggerLogic implements Logger {
         loggedNumbers.add(number);
     }
 
+    @Override
+    public void printTxt(String message) {
+        System.out.print(message);
+    }
+
+
 }

@@ -3,11 +3,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.List;
 
+import static java.lang.System.out;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -25,20 +27,46 @@ public class StringCalculatorTest {
     }
 
     @Test
-    public void testMainWelcomeAndHelpText() {
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream printStream = new PrintStream(outputStream);
-        System.setOut(printStream);
-        Calculator.main();
-        String output = outputStream.toString();
-        assertEquals("Welcome to the calculator!\n", output);
-        assertEquals("please enter the numbers.\n", output);
+    public void testWelcomeMessage() {
+        // Set the input for the test
+        String input = "\n";
+        ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
+        System.setIn(testIn);
+        // Create a mock logger and StringCalculator
+        Logger mockLogger = mock(Logger.class);
+        StringCalculator strCalc = new StringCalculatorImpl(mockLogger);
 
-        System.setOut(System.out);
+        ByteArrayOutputStream testOut = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(testOut));
+
+        Calculator.main();
+        // Verify the welcome message is printed
+        String expectedOutput = "Welcome to the calculator!\nPlease enter the numbers.\n";
+        assertEquals(expectedOutput, testOut.toString());
     }
+
     @Test
     public void testMainMethodWithInput() {
+        ByteArrayInputStream in = new ByteArrayInputStream("scalc '1,2,3'\n\n".getBytes());
+        System.setIn(in);
+        Calculator.main();
+        assertEquals("Welcome to the calculator!\nPlease enter the numbers.\nThe result is 6\n", out.toString());
+    }
 
+    @Test
+    public void testMultipleInputs(){
+        ByteArrayInputStream in = new ByteArrayInputStream("scalc '1,2,3'\nscalc '2,2,3'\nscalc '5,5,5'\n".getBytes());
+        System.setIn(in);
+        Calculator.main();
+        assertEquals("Welcome to the calculator!\n Please enter the numbers.\n The result is 6\n The result is 7\nThe result is 15\n", out.toString());
+    }
+
+    @Test
+    public void testComplexInput(){
+        ByteArrayInputStream in = new ByteArrayInputStream("scalc '//[***][%%%]\n1***2%%%4'\n\n".getBytes());
+        System.setIn(in);
+        Calculator.main();
+        assertEquals("Welcome to String Calculator\n Please enter the numbers.\n The result is 7 ", out.toString());
     }
 
 
