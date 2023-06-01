@@ -28,6 +28,7 @@ public class StringCalculatorTest {
 
     @Test
     public void testWelcomeMessage() {
+
         // Set the input for the test
         String input = "\n";
         ByteArrayInputStream testIn = new ByteArrayInputStream(input.getBytes());
@@ -48,9 +49,12 @@ public class StringCalculatorTest {
     @Test
     public void testMainMethodWithInput() {
         ByteArrayInputStream in = new ByteArrayInputStream("scalc '1,2,3'\n\n".getBytes());
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
         System.setIn(in);
+        System.setOut(new PrintStream(out));
         Calculator.main();
         assertEquals("Welcome to the calculator!\nPlease enter the numbers.\nThe result is 6\n", out.toString());
+
     }
 
     @Test
